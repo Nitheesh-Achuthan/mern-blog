@@ -1,6 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
-import User from '../models/user.model';
+import User from '../models/user.model.js';
 
 export const test = (req,res)=>{
     res.json({
@@ -22,7 +22,7 @@ export const updateUser = async (req,res,next) =>{
         if(req.body.username.length<5 || req.body.username.length>20){
             return next(errorHandler(400,'username must be between 5 and 20 characters'))
         }
-        if(req.body.username.includes('')){
+        if(req.body.username.includes(' ')){
             return next(errorHandler(400,'username cannot contain space'))
         }
         if(req.body.username !== req.body.username.toLowerCase()){
@@ -31,6 +31,7 @@ export const updateUser = async (req,res,next) =>{
         if(!req.body.username.match(/^[a-zA-Z0-9]+$/)){
             return next(errorHandler(400,'username can only contain letters and numbers'))
         }
+    }
         try {
             const updateUser = await User.findByIdAndUpdate(req.params.userId, {
                 $set: {
@@ -46,5 +47,5 @@ export const updateUser = async (req,res,next) =>{
             next(error)
         }
         
-    }
+    
 }  

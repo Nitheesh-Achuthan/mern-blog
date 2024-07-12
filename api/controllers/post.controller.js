@@ -45,7 +45,6 @@ export const getposts = async (req,res,next)=>{
     const totalPosts= await Post.countDocuments();
 
     const now = new Date();
-    console.log(now,'-------------');
 
     const oneMonthAgo = new Date(
         now.getFullYear(),

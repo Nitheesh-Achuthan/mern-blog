@@ -139,7 +139,7 @@ export default function UpdatePost() {
             {formData.image && (
                 <img src={formData.image} alt='upload' className='w-full h-72 object-cover'/>
             )}
-            <ReactQuill theme="snow" placeholder='write something' className='h-72 mb-12' required 
+            <ReactQuill value={formData.content} theme="snow" placeholder='write something' className='h-72 mb-12' required 
             onChange={(value)=>{setFormData({ ...formData, content:value})}}/>;
             <Button type='submit' gradientDuoTone='purpleToPink'>Update post</Button>
             {
